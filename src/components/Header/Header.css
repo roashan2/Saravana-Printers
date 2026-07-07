@@ -1,82 +1,51 @@
-/* Header Base Styles */
+/* ============================================
+   HOVER BAR CONTAINER BASE CONFIGURATION
+   ============================================ */
 .header {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
+    width: 100%;
     z-index: 1000;
     background: var(--color-background);
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     border-bottom: 1px solid var(--color-border);
-}
-
-/* ============================================
-   CORNER-TO-CENTER REVEAL ANIMATION
-   ============================================ */
-.header-initial {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    
+    /* Smooth hover drop transition configuration */
     opacity: 0;
-    transform: translate(-50vw, -50vh) scale(0.85);
+    transform: translateY(-100%);
+    transition: opacity 0.35s ease-in-out, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.header.animated .header-initial {
-    animation: cornerToCenter 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+/* HIDDEN STATE: When completely idle at the absolute top */
+.header.at-top {
+    opacity: 0;
+    transform: translateY(-100%);
+    pointer-events: none;
 }
 
-@keyframes cornerToCenter {
-    0% {
-        opacity: 0;
-        transform: translate(-50vw, -50vh) scale(0.85);
-    }
-
-    60% {
-        opacity: 0.8;
-        transform: translate(0, 0) scale(1.03);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translate(0, 0) scale(1);
-    }
-}
-
-.header-wrapper {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    position: relative;
-}
-
-/* ============================================
-   INITIAL HEADER (Before Scroll)
-   ============================================ */
-.header-initial {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    align-items: center;
-    gap: 3rem;
-    padding: 1.5rem 0;
+/* ACTIVE STATE: Slides down beautifully once user scrolls */
+.header.scrolled {
     opacity: 1;
     transform: translateY(0);
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     pointer-events: all;
 }
 
-.header.scrolled .header-initial {
-    opacity: 0;
-    transform: translateY(-20px);
-    pointer-events: none;
-    position: absolute;
-    top: 0;
-    left: 2rem;
-    right: 2rem;
-}
-
-/* Logo (Left) */
-.header-logo {
+/* Content Width Boundary Wrapper */
+.header-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0.75rem 2rem;
     display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 
+/* ============================================
+   BRAND LOGO STYLES
+   ============================================ */
 .logo-link {
     display: flex;
     align-items: center;
@@ -88,32 +57,6 @@
     transform: scale(1.05);
 }
 
-/* Brand Logo Styles */
-.brand-logo {
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(135deg, #ff6b35, #00b4d8);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
-}
-
-.logo-link:hover .brand-logo {
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-    transform: rotate(5deg);
-}
-
-.logo-aum {
-    font-size: 2rem;
-    color: white;
-    font-weight: bold;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-/* Scrolled Brand Logo (Smaller) */
 .brand-logo-small {
     width: 45px;
     height: 45px;
@@ -138,91 +81,9 @@
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* Navigation (Center) */
-.header-nav-center {
-    display: flex;
-    justify-content: center;
-}
-
-.nav-list {
-    display: flex;
-    gap: 2.5rem;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    align-items: center;
-}
-
-.nav-item {
-    position: relative;
-}
-
-.nav-link {
-    color: var(--color-text);
-    text-decoration: none;
-    font-size: 0.95rem;
-    font-weight: 400;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: color 0.3s ease;
-}
-
-.nav-link:hover {
-    color: var(--color-accent);
-}
-
-.nav-item.active .nav-link {
-    color: var(--color-text);
-}
-
-.nav-dot {
-    color: var(--color-accent);
-    font-size: 0.6rem;
-    line-height: 1;
-}
-
-/* Theme Toggle (Right) */
-.header-theme {
-    display: flex;
-    align-items: center;
-}
-
 /* ============================================
-   SCROLLED HEADER (After Scroll)
+   DESKTOP CORE NAVIGATION LINKS
    ============================================ */
-.header-scrolled {
-    opacity: 0;
-    transform: translateY(20px);
-    pointer-events: none;
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.header.scrolled .header-scrolled {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: all;
-}
-
-.header-scrolled-content {
-    padding: 1rem 0;
-}
-
-.header-scrolled-top {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 3rem;
-    margin-bottom: 1rem;
-}
-
-/* Scrolled Logo (Center) */
-.scrolled-logo {
-    display: flex;
-    align-items: center;
-}
-
-/* Scrolled Navigation (Center) */
 .scrolled-nav {
     display: flex;
     justify-content: center;
@@ -235,10 +96,6 @@
     margin: 0;
     padding: 0;
     align-items: center;
-}
-
-.nav-item-scrolled {
-    position: relative;
 }
 
 .nav-link-scrolled {
@@ -260,19 +117,28 @@
     color: var(--color-text);
 }
 
-/* Scrolled Theme Toggle */
+.nav-dot {
+    color: var(--color-accent);
+    font-size: 0.6rem;
+    line-height: 1;
+}
+
 .scrolled-theme {
     display: flex;
     align-items: center;
 }
 
-/* Social Links (Bottom of scrolled header) */
+/* ============================================
+   SOCIAL LINKS SECTION TRAY
+   ============================================ */
 .header-social {
     display: flex;
     justify-content: center;
     gap: 2rem;
-    padding: 0.75rem 0;
+    padding: 0.5rem 0 0.75rem 0;
     border-top: 1px solid var(--color-border);
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 .social-link {
@@ -283,9 +149,6 @@
     letter-spacing: 0.05em;
     text-transform: uppercase;
     transition: color 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
 }
 
 .social-link:hover {
@@ -293,7 +156,7 @@
 }
 
 /* ============================================
-   MOBILE MENU
+   RESPONSIVE LAYOUTS & MOBILE MENU
    ============================================ */
 .mobile-menu-toggle {
     display: none;
@@ -303,10 +166,6 @@
     border: none;
     cursor: pointer;
     padding: 0.5rem;
-    position: absolute;
-    right: 2rem;
-    top: 50%;
-    transform: translateY(-50%);
     z-index: 1001;
 }
 
@@ -332,21 +191,15 @@
 
 .nav-mobile {
     display: none;
-    padding: 1rem 0;
+    padding: 1rem 2rem;
+    background: var(--color-background);
     border-top: 1px solid var(--color-border);
     animation: slideInDown 0.3s ease-out;
 }
 
 @keyframes slideInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .mobile-menu {
@@ -374,77 +227,29 @@
     padding-left: 1.5rem;
 }
 
-/* ============================================
-   RESPONSIVE DESIGN
-   ============================================ */
+/* Screen Size Media Query Triggers */
 @media (max-width: 1024px) {
+    .header {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+        pointer-events: all !important;
+    }
 
-    .header-initial,
-    .header-scrolled {
+    .scrolled-nav, .header-social {
         display: none !important;
     }
 
-    .mobile-menu-toggle {
+    .mobile-menu-toggle, .nav-mobile {
         display: flex;
     }
-
+    
     .nav-mobile {
         display: block;
     }
-
-    .header-wrapper {
-        padding: 1rem 2rem;
-    }
-
-    .logo-link {
-        font-size: 1.25rem;
-    }
 }
 
-@media (max-width: 768px) {
-    .header-wrapper {
-        padding: 1rem 1.5rem;
-    }
-
-    .mobile-menu-toggle {
-        right: 1.5rem;
-    }
-
-    .social-link {
-        font-size: 0.7rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .header-wrapper {
-        padding: 1rem;
-    }
-
-    .mobile-menu-toggle {
-        right: 1rem;
-    }
-
-    .logo-link {
-        font-size: 1.125rem;
-    }
-
-    .header-social {
-        flex-wrap: wrap;
-        gap: 1rem;
-    }
-
-    .social-link {
-        font-size: 0.65rem;
-    }
-}
-
-/* ============================================
-   DESKTOP ONLY
-   ============================================ */
 @media (min-width: 1025px) {
-
-    .mobile-menu-toggle,
-    .nav-mobile {
+    .mobile-menu-toggle, .nav-mobile {
         display: none !important;
     }
 }

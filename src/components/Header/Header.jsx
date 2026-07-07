@@ -6,22 +6,11 @@ import './Header.css';
 const Header = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [hasScrolled, setHasScrolled] = useState(false);
-    const [showAnimation, setShowAnimation] = useState(false);
 
     useEffect(() => {
-        // Trigger corner-to-center animation on mount (only once per session)
-        const hasAnimated = sessionStorage.getItem('headerAnimated');
-        if (!hasAnimated) {
-            setTimeout(() => {
-                setShowAnimation(true);
-                sessionStorage.setItem('headerAnimated', 'true');
-            }, 100);
-        } else {
-            setShowAnimation(true);
-        }
-
         const handleScroll = () => {
-            setHasScrolled(window.scrollY > 100);
+            // Becomes fixed/visible once the user scrolls down 60 pixels
+            setHasScrolled(window.scrollY > 60);
         };
 
         window.addEventListener('scroll', handleScroll);
@@ -31,97 +20,44 @@ const Header = () => {
     }, []);
 
     return (
-        <header className={`header ${hasScrolled ? 'scrolled' : ''} ${showAnimation ? 'animated' : ''}`}>
+        <header className={`header ${hasScrolled ? 'scrolled' : 'at-top'}`}>
             <div className="header-wrapper">
-                {/* Initial Header Layout (Before Scroll) */}
-                <div className="header-initial">
-                    <div className="header-logo">
-                        <Link to="/" className="logo-link">
-                            <div className="brand-logo">
-                                <span className="logo-aum">ॐ</span>
-                            </div>
-                        </Link>
-                    </div>
-
-                    <nav className="header-nav-center">
-                        <ul className="nav-list">
-                            <li className="nav-item active">
-                                <Link to="/" className="nav-link">
-                                    <span className="nav-dot">●</span> Home
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link to="/profile" className="nav-link">About</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link to="/products" className="nav-link">Projects</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link to="/contact" className="nav-link">Contact</Link>
-                            </li>
-                        </ul>
-                    </nav>
-
-                    <div className="header-theme">
-                        <ThemeToggle />
-                    </div>
+                
+                {/* Clean Logo Block */}
+                <div className="header-logo">
+                    <Link to="/" className="logo-link">
+                        <div className="brand-logo-small">
+                            <span className="logo-aum-small">ॐ</span>
+                        </div>
+                    </Link>
                 </div>
 
-                {/* Scrolled Header Layout (After Scroll) */}
-                <div className="header-scrolled">
-                    <div className="header-scrolled-content">
-                        <div className="header-scrolled-top">
-                            <div className="scrolled-logo">
-                                <Link to="/" className="logo-link">
-                                    <div className="brand-logo-small">
-                                        <span className="logo-aum-small">ॐ</span>
-                                    </div>
-                                </Link>
-                            </div>
+                {/* Central Desktop Links */}
+                <nav className="scrolled-nav">
+                    <ul className="nav-list-scrolled">
+                        <li className="nav-item-scrolled active">
+                            <Link to="/" className="nav-link-scrolled">
+                                <span className="nav-dot">●</span> Home
+                            </Link>
+                        </li>
+                        <li className="nav-item-scrolled">
+                            <Link to="/profile" className="nav-link-scrolled">About</Link>
+                        </li>
+                        <li className="nav-item-scrolled">
+                            <Link to="/products" className="nav-link-scrolled">Projects</Link>
+                        </li>
+                        <li className="nav-item-scrolled">
+                            <Link to="/contact" className="nav-link-scrolled">Contact</Link>
+                        </li>
+                    </ul>
+                </nav>
 
-                            <nav className="scrolled-nav">
-                                <ul className="nav-list-scrolled">
-                                    <li className="nav-item-scrolled active">
-                                        <Link to="/" className="nav-link-scrolled">
-                                            <span className="nav-dot">●</span> Home
-                                        </Link>
-                                    </li>
-                                    <li className="nav-item-scrolled">
-                                        <Link to="/profile" className="nav-link-scrolled">About</Link>
-                                    </li>
-                                    <li className="nav-item-scrolled">
-                                        <Link to="/products" className="nav-link-scrolled">Projects</Link>
-                                    </li>
-                                    <li className="nav-item-scrolled">
-                                        <Link to="/contact" className="nav-link-scrolled">Contact</Link>
-                                    </li>
-                                </ul>
-                            </nav>
-
-                            <div className="scrolled-theme">
-                                <ThemeToggle />
-                            </div>
-                        </div>
-
-                        {/* Social Links (Only visible when scrolled) */}
-                        <div className="header-social">
-                            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="social-link">
-                                LINKEDIN ↗
-                            </a>
-                            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="social-link">
-                                GITHUB ↗
-                            </a>
-                            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-link">
-                                INSTAGRAM ↗
-                            </a>
-                            <a href="mailto:contact@example.com" className="social-link">
-                                GMAIL ↗
-                            </a>
-                        </div>
-                    </div>
+                {/* Right Utilities */}
+                <div className="scrolled-theme">
+                    <ThemeToggle />
                 </div>
 
-                {/* Mobile Menu Toggle */}
+                {/* Mobile Menu Action Toggle */}
                 <button
                     className={`mobile-menu-toggle ${mobileMenuOpen ? 'active' : ''}`}
                     onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -133,7 +69,23 @@ const Header = () => {
                 </button>
             </div>
 
-            {/* Mobile Navigation */}
+            {/* Bottom Tray: Desktop Social Links */}
+            <div className="header-social">
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="social-link">
+                    LINKEDIN ↗
+                </a>
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="social-link">
+                    GITHUB ↗
+                </a>
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-link">
+                    INSTAGRAM ↗
+                </a>
+                <a href="mailto:contact@example.com" className="social-link">
+                    GMAIL ↗
+                </a>
+            </div>
+
+            {/* Mobile Adaptive Dropdown Tray */}
             {mobileMenuOpen && (
                 <nav className="nav-mobile">
                     <ul className="mobile-menu">
