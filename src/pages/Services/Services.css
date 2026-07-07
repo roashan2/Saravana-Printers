@@ -1,0 +1,130 @@
+.services-page {
+    min-height: 100vh;
+}
+
+.services-hero {
+    background: linear-gradient(135deg, var(--color-teal), var(--color-text));
+    color: var(--color-text);
+    padding: var(--spacing-2xl) 0;
+    text-align: center;
+}
+
+.service-section {
+    scroll-margin-top: 80px;
+    /* For anchor navigation with fixed header */
+}
+
+.service-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+}
+
+.service-icon-large {
+    font-size: 5rem;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+.service-title {
+    font-size: 2.5rem;
+    color: var(--color-text);
+    margin: 0;
+}
+
+.section-alt .service-title {
+    color: var(--color-text);
+}
+
+.service-tagline {
+    font-size: 1.25rem;
+    color: var(--color-accent);
+    margin: 0;
+}
+
+.service-content {
+    max-width: 900px;
+}
+
+.service-content>p {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--color-dark-grey);
+    margin-bottom: var(--spacing-xl);
+}
+
+.service-types {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.type-card {
+    background: var(--color-background);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--color-accent);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-base);
+}
+
+.section-alt .type-card {
+    background: var(--color-background);
+}
+
+.type-card:hover {
+    transform: translateX(8px);
+    box-shadow: var(--shadow-md);
+}
+
+.type-card h4 {
+    color: var(--color-teal);
+    margin-bottom: var(--spacing-xs);
+    font-size: 1.125rem;
+}
+
+.type-card p {
+    color: var(--color-dark-grey);
+    font-size: 0.875rem;
+    margin: 0;
+}
+
+.service-features {
+    list-style: none;
+    padding: 0;
+    margin-bottom: var(--spacing-xl);
+}
+
+.service-features li {
+    padding: var(--spacing-sm) 0;
+    padding-left: var(--spacing-xl);
+    position: relative;
+    font-size: 1.125rem;
+    color: var(--color-dark-grey);
+}
+
+.service-features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+    font-weight: var(--font-weight-bold);
+    font-size: 1.25rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .service-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .service-title {
+        font-size: 2rem;
+    }
+
+    .service-icon-large {
+        font-size: 4rem;
+    }
+}

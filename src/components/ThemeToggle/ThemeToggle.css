@@ -1,0 +1,72 @@
+.theme-toggle {
+    position: absolute;
+    top: 50%;
+    right: 2rem;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.theme-toggle:hover {
+    transform: translateY(-50%) scale(1.15);
+}
+
+.theme-toggle:active {
+    transform: translateY(-50%) scale(0.9);
+}
+
+.theme-toggle .icon {
+    font-size: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+/* Animation when toggling */
+.theme-toggle.animating .icon {
+    animation: toggleIcon 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes toggleIcon {
+    0% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(0) rotate(180deg);
+        opacity: 0;
+    }
+
+    51% {
+        transform: scale(0) rotate(-180deg);
+    }
+
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .theme-toggle {
+        right: 1rem;
+        width: 36px;
+        height: 36px;
+    }
+
+    .theme-toggle .icon {
+        font-size: 20px;
+    }
+}

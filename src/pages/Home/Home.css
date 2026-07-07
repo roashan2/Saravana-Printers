@@ -1,0 +1,12 @@
+.home-page {
+    overflow-x: hidden;
+}
+
+/* Content that scrolls over the fixed hero */
+.content-scroll-container {
+    position: relative;
+    z-index: 2;
+    margin-top: 100vh;
+    /* Push content down by hero height */
+    background: var(--color-white);
+}

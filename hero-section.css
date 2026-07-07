@@ -1,0 +1,374 @@
+/* ===========================
+   CSS VARIABLES - THEME SYSTEM
+   =========================== */
+:root {
+    /* Light Mode (Default) */
+    --bg-primary: #f8fafc;
+    --bg-card: rgba(255, 255, 255, 0.6);
+    --text-primary: #0f172a;
+    --text-muted: #64748b;
+    --color-primary: #4f46e5;
+    --color-accent: #6366f1;
+    --border-color: rgba(100, 116, 139, 0.2);
+    --shadow-color: rgba(0, 0, 0, 0.08);
+}
+
+:root[data-theme="dark"] {
+    /* Dark Mode */
+    --bg-primary: #020617;
+    --bg-card: rgba(15, 23, 42, 0.6);
+    --text-primary: #f8fafc;
+    --text-muted: #94a3b8;
+    --color-primary: #6366f1;
+    --color-accent: #818cf8;
+    --border-color: rgba(148, 163, 184, 0.2);
+    --shadow-color: rgba(0, 0, 0, 0.4);
+}
+
+/* ===========================
+   RESET & BASE STYLES
+   =========================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    overflow-x: hidden;
+    transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+        color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ===========================
+   THEME TOGGLE BUTTON
+   =========================== */
+.theme-toggle {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    border: 2px solid var(--border-color);
+    background: var(--bg-card);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px var(--shadow-color);
+}
+
+.theme-toggle:active {
+    transform: scale(0.95);
+}
+
+.theme-toggle svg {
+    position: absolute;
+    color: var(--text-primary);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sun-icon {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+}
+
+.moon-icon {
+    opacity: 0;
+    transform: rotate(90deg) scale(0);
+}
+
+:root[data-theme="dark"] .sun-icon {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0);
+}
+
+:root[data-theme="dark"] .moon-icon {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+}
+
+/* ===========================
+   HERO SECTION - FULLSCREEN
+   =========================== */
+.hero-section {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-primary);
+}
+
+/* ===========================
+   CRITICAL ANIMATION
+   Bottom-Left Corner → Center
+   =========================== */
+.hero-container {
+    width: 90%;
+    max-width: 1400px;
+    padding: 3rem;
+    background: var(--bg-card);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 32px;
+    border: 1px solid var(--border-color);
+    box-shadow:
+        0 20px 60px var(--shadow-color),
+        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+
+    /* INITIAL STATE - Bottom-Left Corner */
+    opacity: 0;
+    transform: translate(-40vw, 40vh) scale(0.3);
+    transform-origin: bottom left;
+
+    /* ANIMATION */
+    animation: cinematicEntrance 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+    animation-delay: 0.2s;
+}
+
+@keyframes cinematicEntrance {
+    0% {
+        opacity: 0;
+        transform: translate(-40vw, 40vh) scale(0.3);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+    }
+}
+
+/* ===========================
+   NAVIGATION BAR
+   =========================== */
+.nav-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 4rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.logo-circle {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 1.25rem;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.logo-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-weight: 500;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.nav-links a:hover {
+    color: var(--color-primary);
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--color-primary);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.nav-cta {
+    padding: 0.75rem 1.5rem;
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+}
+
+.nav-cta:hover {
+    background: var(--color-accent);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.3);
+}
+
+.nav-cta:active {
+    transform: translateY(0);
+}
+
+/* ===========================
+   HERO CONTENT - CENTER
+   =========================== */
+.hero-content {
+    text-align: center;
+    padding: 3rem 0;
+}
+
+.hero-title {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: block;
+    margin-top: 0.5rem;
+}
+
+.hero-subtitle {
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    color: var(--text-muted);
+    max-width: 700px;
+    margin: 0 auto 3rem;
+    line-height: 1.6;
+}
+
+.hero-cta {
+    padding: 1rem 2.5rem;
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    border-radius: 16px;
+    font-weight: 600;
+    font-size: 1.125rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 8px 24px rgba(99, 102, 241, 0.25);
+}
+
+.hero-cta:hover {
+    background: var(--color-accent);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(99, 102, 241, 0.35);
+}
+
+.hero-cta:active {
+    transform: translateY(-1px);
+}
+
+.hero-cta svg {
+    transition: transform 0.3s ease;
+}
+
+.hero-cta:hover svg {
+    transform: translateX(4px);
+}
+
+/* ===========================
+   RESPONSIVE DESIGN
+   =========================== */
+@media (max-width: 768px) {
+    .theme-toggle {
+        top: 1rem;
+        right: 1rem;
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+
+    .hero-container {
+        width: 95%;
+        padding: 2rem 1.5rem;
+        border-radius: 24px;
+    }
+
+    .nav-bar {
+        flex-direction: column;
+        gap: 1.5rem;
+        margin-bottom: 3rem;
+    }
+
+    .nav-links {
+        gap: 1.25rem;
+        font-size: 0.9rem;
+    }
+
+    .nav-cta {
+        padding: 0.625rem 1.25rem;
+        font-size: 0.9rem;
+    }
+
+    .hero-content {
+        padding: 2rem 0;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .hero-cta {
+        padding: 0.875rem 2rem;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-links {
+        flex-direction: column;
+        gap: 0.75rem;
+        text-align: center;
+    }
+}

@@ -1,0 +1,209 @@
+.contact-page {
+    min-height: 100vh;
+}
+
+.contact-hero {
+    background: linear-gradient(135deg, var(--color-text), var(--color-teal));
+    color: var(--color-text);
+    padding: var(--spacing-2xl) 0;
+    text-align: center;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-2xl);
+    margin-bottom: var(--spacing-2xl);
+}
+
+/* Form Styles */
+.contact-form-wrapper h2,
+.contact-info-wrapper h2 {
+    font-size: 2rem;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-lg);
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.form-group label {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 0.875rem;
+    border: 2px solid var(--color-medium-grey);
+    border-radius: var(--radius-md);
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    transition: all var(--transition-base);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-teal);
+    box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.btn-block {
+    width: 100%;
+}
+
+/* Contact Info Cards */
+.contact-info-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.contact-info-card {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg);
+    background: var(--color-background);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-base);
+}
+
+.contact-info-card:hover {
+    transform: translateX(8px);
+    box-shadow: var(--shadow-lg);
+}
+
+.info-icon {
+    font-size: 2.5rem;
+    flex-shrink: 0;
+}
+
+.contact-info-card h3 {
+    color: var(--color-teal);
+    margin-bottom: var(--spacing-xs);
+    font-size: 1.125rem;
+}
+
+.contact-info-card p,
+.contact-info-card a {
+    color: var(--color-dark-grey);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.contact-info-card a {
+    color: var(--color-teal);
+    transition: color var(--transition-base);
+}
+
+.contact-info-card a:hover {
+    color: var(--color-accent);
+}
+
+/* Business Hours */
+.business-hours {
+    padding: var(--spacing-lg);
+    background: var(--color-text);
+    color: var(--color-text);
+    border-radius: var(--radius-lg);
+}
+
+.business-hours h3 {
+    color: var(--color-accent);
+    margin-bottom: var(--spacing-md);
+}
+
+.hours-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.hours-item {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--spacing-sm) 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hours-item:last-child {
+    border-bottom: none;
+}
+
+/* Map Section */
+.map-section {
+    margin-top: var(--spacing-2xl);
+}
+
+.map-section h2 {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-lg);
+}
+
+.map-container {
+    width: 100%;
+    height: 450px;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+}
+
+.map-placeholder {
+    width: 100%;
+    height: 100%;
+    background: var(--color-light-grey);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+}
+
+.map-icon {
+    font-size: 5rem;
+    opacity: 0.3;
+}
+
+.map-placeholder p {
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-dark-grey);
+    margin: 0;
+}
+
+.map-placeholder small {
+    color: var(--color-dark-grey);
+    opacity: 0.6;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .map-container {
+        height: 300px;
+    }
+}

@@ -1,0 +1,190 @@
+.portfolio-tabs {
+    background: white;
+}
+
+.tab-menu {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-2xl);
+    flex-wrap: wrap;
+}
+
+.tab-button {
+    padding: 0.875rem 1.75rem;
+    background: white;
+    border: 2px solid var(--color-medium-grey);
+    color: var(--color-dark-grey);
+    font-weight: var(--font-weight-semibold);
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.tab-button:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    transform: translateY(-2px);
+}
+
+.tab-button.active {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-text);
+    box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-xl);
+}
+
+.portfolio-item {
+    position: relative;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    transition: all var(--transition-base);
+}
+
+.portfolio-item:hover {
+    box-shadow: var(--shadow-xl);
+}
+
+.portfolio-image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+}
+
+.image-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--color-light-grey), var(--color-medium-grey));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    transition: transform var(--transition-slow);
+}
+
+.placeholder-icon {
+    font-size: 4rem;
+    opacity: 0.3;
+}
+
+.placeholder-text {
+    font-size: 1.25rem;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-dark-grey);
+    opacity: 0.5;
+    margin: 0;
+}
+
+/* Glassmorphism Overlay */
+.portfolio-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.3);
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all var(--transition-slow);
+}
+
+.portfolio-item:hover .portfolio-overlay {
+    opacity: 1;
+    backdrop-filter: blur(35px);
+    -webkit-backdrop-filter: blur(35px);
+    background: rgba(15, 23, 42, 0.5);
+}
+
+.portfolio-item:hover .image-placeholder {
+    transform: scale(1.1) rotate(2deg);
+}
+
+.overlay-content {
+    text-align: center;
+    color: var(--color-text);
+    transform: translateY(20px);
+    transition: transform var(--transition-slow);
+    padding: var(--spacing-lg);
+}
+
+.portfolio-item:hover .overlay-content {
+    transform: translateY(0);
+}
+
+.portfolio-title {
+    font-size: 1.75rem;
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-md);
+    color: var(--color-text);
+}
+
+.portfolio-divider {
+    width: 60px;
+    height: 3px;
+    background: var(--color-accent);
+    margin: 0 auto var(--spacing-md);
+    transform: scaleX(0);
+    transition: transform var(--transition-slow) 0.1s;
+}
+
+.portfolio-item:hover .portfolio-divider {
+    transform: scaleX(1);
+}
+
+.view-details-btn {
+    background: transparent;
+    border: 2px solid white;
+    color: var(--color-text);
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-md);
+    font-weight: var(--font-weight-semibold);
+    font-family: var(--font-primary);
+    font-size: 0.875rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all var(--transition-base);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all var(--transition-slow) 0.2s;
+}
+
+.portfolio-item:hover .view-details-btn {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.view-details-btn:hover {
+    background: white;
+    color: var(--color-text);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tab-menu {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .tab-button {
+        width: 100%;
+    }
+}
